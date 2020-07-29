@@ -7,6 +7,8 @@
   <figcaption>1 Corinthians 10:23</figcaption>
 </figure>
 
+![Benchmark screenshot](./img/vb6-bench.png)
+
 ## Some hypotheses around potential speedups
 
 What can we try to speed up about our current approach?
