@@ -1,5 +1,12 @@
 # Benchmarking VB6
 
+<figure>
+  <blockquote cite="https://biblehub.com/1_corinthians/10-23.htm">
+    All things are lawful for me, but all things are not expedient: all things are lawful for me, but all things edify not.
+  </blockquote>
+  <figcaption>1 Corinthians 10:23</figcaption>
+</figure>
+
 ## Some hypotheses around potential speedups
 
 What can we try to speed up about our current approach?
