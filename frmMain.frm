@@ -36,8 +36,63 @@ End Sub
 
 Private Sub DoBenchmarks()
     Call StructVsPrimitive
+    log ("=====================================")
     Call LocalVsFunction
+    log ("=====================================")
     Call testGoTo
+    log ("=====================================")
+    Call GoToPerformance
+End Sub
+
+Private Sub GoToPerformance()
+linex5:
+    Dim ticks As Long, totalTime As Long
+linex6:
+    Dim x As Double
+linex7:
+    log ("Local...")
+linex8:
+    ticks = GetTickCount
+linex9:
+    For i = 0 To iterations
+linex1:
+        x = i * 1#
+linex2:
+        x = i * 2# + x
+linex3:
+        x = i * 3# * x
+linex4:
+        x = i * 4# + x
+    Next i
+linex10:
+    totalTime = GetTickCount - ticks
+linex11:
+    log ("No-op loop took " & CStr(totalTime) & " ms.")
+linex12:
+    log ("Sprinkled with GoTos...")
+linex13:
+    ticks = GetTickCount
+linex14:
+    For i = 0 To iterations
+linex15:
+        GoTo Line4
+Line1:
+        x = i * 1#
+        GoTo Line3
+Line2:
+        x = i
+        GoTo endofloop
+Line3:
+        x = i * 3# * x
+        GoTo Line2
+Line4:
+        x = i * 4# + x
+        GoTo Line1
+endofloop:
+    Next i
+    totalTime = GetTickCount - ticks
+    log ("The last value of i = " & CStr(x))
+    log ("With GoTos took " & CStr(totalTime) & " ms.")
 End Sub
 
 Private Sub LocalVsFunction()
