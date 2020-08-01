@@ -91,4 +91,9 @@ VB6 functions by reimplementing them ourselves.  Turns out it seems to
 be.. pretty fast?  The same, or _faster_, than linear code.  That's
 strange, but it doesn't look like a showstopper either way.
 
+### Global variables vs local variables
+
+Declaring variables globally vs. locally within a function seems to make a
+negligible difference to speed: one isn't consistently faster than the other.
+
 Time to build ourselves an optimising inliner!

@@ -29,6 +29,9 @@ Option Explicit
 Const iterations = 10000000
 Dim i As Long
 
+Dim globalVar1, globalVar2 As Double
+
+
 Private Sub Form_Load()
     log ("Starting up. # of Iterations = " & CStr(iterations))
     Call DoBenchmarks
@@ -42,6 +45,8 @@ Private Sub DoBenchmarks()
     Call testGoTo
     log ("=====================================")
     Call GoToPerformance
+    log ("=====================================")
+    Call GlobalVsLocalVars
 End Sub
 
 Private Sub GoToPerformance()
@@ -178,3 +183,33 @@ SomethingBody:
 TheEnd:
 End Sub
 
+
+Private Sub GlobalVsLocalVars()
+    globalVar1 = 3.45
+    globalVar2 = 4.56
+    
+    Dim localVar1, localVar2 As Double
+    localVar1 = 3.45
+    localVar2 = 4.56
+    
+    Dim ticks As Long, totalTime As Long
+    
+    log ("Global variables...")
+    ticks = GetTickCount
+    
+    For i = 0 To iterations
+        Dim x As Double
+        x = i + globalVar1 * globalVar2
+    Next i
+    totalTime = GetTickCount - ticks
+    log ("Global variables took " & CStr(totalTime) & " ms.")
+    
+    
+    log ("Local variables...")
+    ticks = GetTickCount
+    For i = 0 To iterations
+        x = i + localVar1 * localVar2
+    Next i
+    totalTime = GetTickCount - ticks
+    log ("Local variables took " & CStr(totalTime) & " ms.")
+End Sub
